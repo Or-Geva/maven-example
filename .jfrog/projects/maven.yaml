@@ -1,0 +1,10 @@
+version: 1
+type: maven
+resolver:
+  serverId: rtTestServerId
+  snapshotRepo: jfrog-cli-tests-jcenter-remote-1576758815
+  releaseRepo: jfrog-cli-tests-jcenter-remote-1576758815
+deployer:
+  serverId: rtTestServerId
+  snapshotRepo: jfrog-cli-tests-jcenter-remote-1576758815
+  releaseRepo: jfrog-cli-tests-jcenter-remote-1576758815
