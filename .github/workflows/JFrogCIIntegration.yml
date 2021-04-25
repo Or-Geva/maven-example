@@ -1,9 +1,10 @@
 name: 'JFrog CI Integration'
 on: [push]
-env:
-  JF_ARTIFACTORY_1: ${{ secrets.JF_ARTIFACTORY_SECRET_1 }}
 jobs:
-  build:
+  env:
+    JF_ARTIFACTORY_1: ${{ secrets.JF_ARTIFACTORY_SECRET_1 }}
+    JFROG_BUILD_STATUS: PASS
+  jfrog-ci-integration:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -22,22 +23,14 @@ jobs:
           jfrog rt mvn-config --server-id-resolve=free --repo-resolve-releases=libs-release-remote --repo-resolve-snapshots=libs-snapshot-remote
           # Build the maven project
           jfrog rt mvn clean install
-
-  publish:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Setup JFrog CLI
-        uses: jfrog/setup-jfrog-cli@v1
-        env:
-          JFROG_BUILD_STATUS: true
-      - name: Run JFrog CLI
-        run: |
-          # Collect environment variables for the build
-          jfrog rt bce
-          # Collect VCS details from git and add them to the build
-          jfrog rt bag
-          # Publish build info
-          jfrog rt bp
+      - run: export JFROG_BUILD_STATUS=FAIL
+        if: failed()
+      - run: |
+        # Collect environment variables for the build
+        jfrog rt bce
+        # Collect VCS details from git and add them to the build
+        jfrog rt bag
+        # Publish build info
+        jfrog rt bp
+        # Scan build
+        jfrog rt bs
