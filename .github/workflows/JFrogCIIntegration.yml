@@ -34,3 +34,4 @@ jobs:
           jfrog rt bp
           # Scan build
           jfrog rt bs
+        if: always()
