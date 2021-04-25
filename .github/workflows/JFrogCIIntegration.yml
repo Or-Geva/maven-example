@@ -25,7 +25,7 @@ jobs:
           jfrog rt mvn clean install
       - run: |
           export JFROG_BUILD_STATUS=FAIL
-          echo "::set-env name=JFROG_BUILD_STATUS::$JFROG_BUILD_STATUS"
+          echo "JFROG_BUILD_STATUS=FAIL" >> $GITHUB_ENV
         if: failure()
       - run: |
           # Collect environment variables for the build
