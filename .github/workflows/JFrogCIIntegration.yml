@@ -1,10 +1,10 @@
 name: 'JFrog CI Integration'
 on: [push]
 jobs:
-env:
-  JF_ARTIFACTORY_1: ${{ secrets.JF_ARTIFACTORY_SECRET_1 }}
-  JFROG_CLI_BUILD_NAME: ${GITHUB_WORKFLOW}-${GITHUB_REPOSITORY}
-  JFROG_CLI_BUILD_NUMBER: ${GITHUB_RUN_NUMBER}
+  env:
+    JF_ARTIFACTORY_1: ${{ secrets.JF_ARTIFACTORY_SECRET_1 }}
+    JFROG_CLI_BUILD_NAME: ${GITHUB_WORKFLOW}-${GITHUB_REPOSITORY}
+    JFROG_CLI_BUILD_NUMBER: ${GITHUB_RUN_NUMBER}
   build:
     runs-on: ubuntu-latest
     steps:
