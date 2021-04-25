@@ -19,12 +19,10 @@ jobs:
           JFROG_CLI_BUILD_NUMBER: ${GITHUB_RUN_NUMBER}
       - name: Run Maven build
         run: |
-          # Test Maven
-          - mvn -v
-          # Init JFrog CLI integration with Maven
-          #- jfrog rt mvn-config --server-id-resolve=local-1 --repo-resolve-releases=libs-release-remote ----repo-resolve-snapshots=libs-snapshot-remote
+          # Init JFrog CLI Maven config
+          jfrog rt mvn-config --server-id-resolve=local-1 --repo-resolve-releases=libs-release-remote ----repo-resolve-snapshots=libs-snapshot-remote
           # Build the maven project
-          #- jfrog rt mvn clean install
+          jfrog rt mvn clean install
 
 
   publish:
@@ -40,8 +38,8 @@ jobs:
       - name: Run JFrog CLI
         run: |
           # Collect environment variables for the build
-         # jfrog rt bce
+          jfrog rt bce
           # Collect VCS details from git and add them to the build
-          #jfrog rt bag
+          jfrog rt bag
           # Publish build info
-         # jfrog rt bp
+          jfrog rt bp
