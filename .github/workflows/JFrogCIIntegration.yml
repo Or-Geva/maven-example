@@ -20,7 +20,7 @@ jobs:
       - name: Run Maven build
         run: |
           # Init JFrog CLI Maven config
-          jfrog rt mvn-config --server-id-resolve=local-1 --repo-resolve-releases=libs-release-remote ----repo-resolve-snapshots=libs-snapshot-remote
+          jfrog rt mvn-config --server-id-resolve=local-1 --repo-resolve-releases=libs-release-remote --repo-resolve-snapshots=libs-snapshot-remote
           # Build the maven project
           jfrog rt mvn clean install
 
