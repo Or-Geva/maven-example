@@ -24,7 +24,7 @@ jobs:
           # Build the maven project
           jfrog rt mvn clean install
       - run: export JFROG_BUILD_STATUS=FAIL
-        if: failed()
+        if: failure()
       - run: |
           # Collect environment variables for the build
           jfrog rt bce
