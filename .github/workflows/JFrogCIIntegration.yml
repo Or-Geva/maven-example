@@ -16,8 +16,8 @@ jobs:
       - name: Run Maven build
         env:
           JF_ARTIFACTORY_1: ${{ secrets.JF_ARTIFACTORY_SECRET_1 }}
-          JFROG_CLI_BUILD_NAME: ${{ GITHUB_WORKFLOW }}-${{ GITHUB_REPOSITORY }}
-          JFROG_CLI_BUILD_NUMBER: ${{ GITHUB_RUN_NUMBER }}
+          JFROG_CLI_BUILD_NAME: ${{ env.GITHUB_WORKFLOW }}-${{ env.GITHUB_REPOSITORY }}
+          JFROG_CLI_BUILD_NUMBER: ${{ env.GITHUB_RUN_NUMBER }}
           M2_HOME: ${{ which mvn }}
         run: |
           # Init JFrog CLI Maven config
